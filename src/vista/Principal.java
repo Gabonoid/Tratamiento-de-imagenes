@@ -56,8 +56,8 @@ public class Principal extends javax.swing.JFrame {
         menuItem180 = new javax.swing.JMenuItem();
         menuItem270 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItemInverso = new javax.swing.JMenuItem();
-        jMenuItemUmbral = new javax.swing.JMenuItem();
+        menuItemInverso = new javax.swing.JMenuItem();
+        menuItemUmbral = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -147,16 +147,16 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu5.setText("Umbralizacion");
 
-        jMenuItemInverso.setText("Inverso");
-        jMenuItemInverso.addActionListener(new java.awt.event.ActionListener() {
+        menuItemInverso.setText("Inverso");
+        menuItemInverso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemInversoActionPerformed(evt);
+                menuItemInversoActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItemInverso);
+        jMenu5.add(menuItemInverso);
 
-        jMenuItemUmbral.setText("Umbral");
-        jMenu5.add(jMenuItemUmbral);
+        menuItemUmbral.setText("Umbral");
+        jMenu5.add(menuItemUmbral);
 
         jMenuBar1.add(jMenu5);
 
@@ -191,9 +191,9 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemInversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInversoActionPerformed
+    private void menuItemInversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInversoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemInversoActionPerformed
+    }//GEN-LAST:event_menuItemInversoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,8 +241,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
-    public javax.swing.JMenuItem jMenuItemInverso;
-    public javax.swing.JMenuItem jMenuItemUmbral;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -256,5 +254,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItem90;
     public javax.swing.JMenuItem menuItemAbrir;
     public javax.swing.JMenuItem menuItemGrises;
+    public javax.swing.JMenuItem menuItemInverso;
+    public javax.swing.JMenuItem menuItemUmbral;
     // End of variables declaration//GEN-END:variables
 }

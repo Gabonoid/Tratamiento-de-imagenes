@@ -106,18 +106,18 @@
             <Property name="text" type="java.lang.String" value="Umbralizacion"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemInverso">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemInverso">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Inverso"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemInversoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemInversoActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemUmbral">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemUmbral">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Umbral"/>
               </Properties>
