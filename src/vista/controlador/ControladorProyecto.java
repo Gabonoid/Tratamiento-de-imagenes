@@ -29,6 +29,9 @@ public class ControladorProyecto implements ActionListener {
         this.objVentanaPrincipal.menuItem90.addActionListener(this);
         this.objVentanaPrincipal.menuItem180.addActionListener(this);
         this.objVentanaPrincipal.menuItem270.addActionListener(this);
+        this.objVentanaPrincipal.menuItemInverso.addActionListener(this);
+        this.objVentanaPrincipal.menuItemUmbral.addActionListener(this);
+        this.objVentanaPrincipal.menuItemZoom.addActionListener(this);
         this.objVentanaPrincipal.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -59,6 +62,18 @@ public class ControladorProyecto implements ActionListener {
         if (e.getActionCommand().equals("270°")) {
             System.out.println("Diste click en rotar 270");
             girar270();
+        }
+        if (e.getActionCommand().equals("Inverso")) {
+            System.out.println("Diste click en Inverso");
+            inverso();
+        }
+        if (e.getActionCommand().equals("Umbral")) {
+            System.out.println("Diste click en Umbral");
+            umbral();
+        }
+        if (e.getActionCommand().equals("Zoom")) {
+            System.out.println("Diste click en zoom");
+            zoom();
         }
     }
 
@@ -102,6 +117,17 @@ public class ControladorProyecto implements ActionListener {
     
     private void girar270(){
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarDoscientosSetenta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
+        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+    }
+    
+    private void inverso(){
+    }
+    
+    private void umbral(){
+    }
+    
+    private void zoom(){
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.interpolacion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 

@@ -58,6 +58,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         menuItemInverso = new javax.swing.JMenuItem();
         menuItemUmbral = new javax.swing.JMenuItem();
+        menuItemZoom = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -156,7 +157,15 @@ public class Principal extends javax.swing.JFrame {
         jMenu5.add(menuItemInverso);
 
         menuItemUmbral.setText("Umbral");
+        menuItemUmbral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemUmbralActionPerformed(evt);
+            }
+        });
         jMenu5.add(menuItemUmbral);
+
+        menuItemZoom.setText("Zoom");
+        jMenu5.add(menuItemZoom);
 
         jMenuBar1.add(jMenu5);
 
@@ -194,6 +203,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemInversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInversoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemInversoActionPerformed
+
+    private void menuItemUmbralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUmbralActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemUmbralActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,5 +269,6 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItemGrises;
     public javax.swing.JMenuItem menuItemInverso;
     public javax.swing.JMenuItem menuItemUmbral;
+    public javax.swing.JMenuItem menuItemZoom;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,4 +39,19 @@ public class FiltrosBasicos {
 
         return girarCientoOchenta(matrizModificada);
     }
+    
+    static public short[][] interpolacion(short[][] matrizOriginal) {
+        int alto = 2 * matrizOriginal.length;
+        int ancho = 2 * matrizOriginal[0].length;
+        short [][] matrizZoom = new short [alto][ancho];
+        for (int i = 0, k = 0; i < matrizZoom.length; i += 2, k++) {
+            for (int j = 0, l = 0; j < matrizZoom[0].length; j+=2, l++) {
+                matrizZoom[i][j] = matrizOriginal[k][l];
+                matrizZoom[i+1][j] = matrizOriginal[k][l];
+                matrizZoom[i][j+1] = matrizOriginal[k][l];
+                matrizZoom[i+1][j+1] = matrizOriginal[k][l];   
+            }   
+        }
+        return matrizZoom;
+    }
 }
