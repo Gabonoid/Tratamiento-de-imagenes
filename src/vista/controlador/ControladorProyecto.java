@@ -33,6 +33,7 @@ public class ControladorProyecto implements ActionListener {
         this.objVentanaPrincipal.menuItemUmbral.addActionListener(this);
         this.objVentanaPrincipal.menuItemZoom.addActionListener(this);
         this.objVentanaPrincipal.menuItemUmbralBinario.addActionListener(this);
+        this.objVentanaPrincipal.menuItemUmbralGris.addActionListener(this);
         this.objVentanaPrincipal.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -79,6 +80,10 @@ public class ControladorProyecto implements ActionListener {
         if (e.getActionCommand().equals("Umbral Binario")) {
             System.out.println("Diste click en Umbral Binario");
             umbralBinario();
+        }
+        if (e.getActionCommand().equals("Umbral Gris")) {
+            System.out.println("Diste click en Umbral Gris");
+            umbralGris();
         }
     }
 
@@ -142,6 +147,11 @@ public class ControladorProyecto implements ActionListener {
 
     private void umbralBinario() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralBinario(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
+        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+    }
+    
+    private void umbralGris() {
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralGris(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 

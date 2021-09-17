@@ -59,6 +59,7 @@ public class Principal extends javax.swing.JFrame {
         menuItemInverso = new javax.swing.JMenuItem();
         menuItemUmbral = new javax.swing.JMenuItem();
         menuItemUmbralBinario = new javax.swing.JMenuItem();
+        menuItemUmbralGris = new javax.swing.JMenuItem();
         menuItemZoom = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
@@ -169,6 +170,9 @@ public class Principal extends javax.swing.JFrame {
         menuItemUmbralBinario.setText("Umbral Binario");
         jMenu5.add(menuItemUmbralBinario);
 
+        menuItemUmbralGris.setText("Umbral Gris");
+        jMenu5.add(menuItemUmbralGris);
+
         menuItemZoom.setText("Zoom");
         jMenu5.add(menuItemZoom);
 
@@ -275,6 +279,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItemInverso;
     public javax.swing.JMenuItem menuItemUmbral;
     public javax.swing.JMenuItem menuItemUmbralBinario;
+    public javax.swing.JMenuItem menuItemUmbralGris;
     public javax.swing.JMenuItem menuItemZoom;
     // End of variables declaration//GEN-END:variables
 }

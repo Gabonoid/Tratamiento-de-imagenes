@@ -43,5 +43,22 @@ public class Umbralizacion {
         }
         return matrizUmbralBinario;
     }
+    
+    public static short[][] umbralGris(short[][] matrizOriginal, short u1, short u2) {
+        short[][] matrizUmbralGris = new short[matrizOriginal.length][matrizOriginal[0].length];
+        u1 = 90;
+        u2 = 180;
+        for (int i = 0; i < matrizOriginal.length; i++) {
+            for (int j = 0; j < matrizOriginal[0].length; j++) {
+                if (matrizOriginal[i][j] < u1 || matrizOriginal[i][j] > u2) {
+                    matrizUmbralGris[i][j] = 255;
+                }
+                if (u1 > matrizOriginal[i][j] && matrizOriginal[i][j] < u2) {
+                    matrizUmbralGris[i][j] = 0;
+                }
+            }
+        }
+        return matrizUmbralGris;
+    }
 
 }
