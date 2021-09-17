@@ -121,6 +121,8 @@ public class ControladorProyecto implements ActionListener {
     }
     
     private void inverso(){
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.inverso(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
+        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
     
     private void umbral(){
