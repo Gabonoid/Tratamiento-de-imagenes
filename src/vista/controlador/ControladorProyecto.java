@@ -126,6 +126,8 @@ public class ControladorProyecto implements ActionListener {
     }
     
     private void umbral(){
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbral(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1)));
+        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
     
     private void zoom(){
