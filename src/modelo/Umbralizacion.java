@@ -43,7 +43,7 @@ public class Umbralizacion {
         }
         return matrizUmbralBinario;
     }
-    
+
     public static short[][] umbralGris(short[][] matrizOriginal, short u1, short u2) {
         short[][] matrizUmbralGris = new short[matrizOriginal.length][matrizOriginal[0].length];
         u1 = 90;
@@ -60,7 +60,7 @@ public class Umbralizacion {
         }
         return matrizUmbralGris;
     }
-    
+
     public static short[][] extension(short[][] matrizOriginal, short u1, short u2) {
         short[][] matrizExtension = new short[matrizOriginal.length][matrizOriginal[0].length];
         u1 = 90;
@@ -71,11 +71,14 @@ public class Umbralizacion {
                     matrizExtension[i][j] = 255;
                 }
                 if (u1 > matrizOriginal[i][j] && matrizOriginal[i][j] < u2) {
-                    matrizExtension[i][j] = (short) ((255*(matrizOriginal[i][j]-u1))/(u2-u1));
+                    short suma = (short) ((255 * (matrizOriginal[i][j] - u1)) / (u2 - u1));
+                    matrizExtension[i][j] = (short) ((suma >= 0) ? suma : (suma * -1));
                 }
             }
         }
         return matrizExtension;
     }
+
+  
 
 }

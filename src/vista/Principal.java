@@ -60,6 +60,7 @@ public class Principal extends javax.swing.JFrame {
         menuItemUmbral = new javax.swing.JMenuItem();
         menuItemUmbralBinario = new javax.swing.JMenuItem();
         menuItemUmbralGris = new javax.swing.JMenuItem();
+        menuItemExtension = new javax.swing.JMenuItem();
         menuItemZoom = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
@@ -173,6 +174,9 @@ public class Principal extends javax.swing.JFrame {
         menuItemUmbralGris.setText("Umbral Gris");
         jMenu5.add(menuItemUmbralGris);
 
+        menuItemExtension.setText("Extension");
+        jMenu5.add(menuItemExtension);
+
         menuItemZoom.setText("Zoom");
         jMenu5.add(menuItemZoom);
 
@@ -275,6 +279,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItem270;
     public javax.swing.JMenuItem menuItem90;
     public javax.swing.JMenuItem menuItemAbrir;
+    public javax.swing.JMenuItem menuItemExtension;
     public javax.swing.JMenuItem menuItemGrises;
     public javax.swing.JMenuItem menuItemInverso;
     public javax.swing.JMenuItem menuItemUmbral;
