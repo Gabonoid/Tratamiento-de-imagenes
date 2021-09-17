@@ -54,11 +54,28 @@ public class Umbralizacion {
                     matrizUmbralGris[i][j] = 255;
                 }
                 if (u1 > matrizOriginal[i][j] && matrizOriginal[i][j] < u2) {
-                    matrizUmbralGris[i][j] = 0;
+                    matrizUmbralGris[i][j] = matrizOriginal[i][j];
                 }
             }
         }
         return matrizUmbralGris;
+    }
+    
+    public static short[][] extension(short[][] matrizOriginal, short u1, short u2) {
+        short[][] matrizExtension = new short[matrizOriginal.length][matrizOriginal[0].length];
+        u1 = 90;
+        u2 = 180;
+        for (int i = 0; i < matrizOriginal.length; i++) {
+            for (int j = 0; j < matrizOriginal[0].length; j++) {
+                if (matrizOriginal[i][j] < u1 || matrizOriginal[i][j] > u2) {
+                    matrizExtension[i][j] = 255;
+                }
+                if (u1 > matrizOriginal[i][j] && matrizOriginal[i][j] < u2) {
+                    matrizExtension[i][j] = (short) ((255*(matrizOriginal[i][j]-u1))/(u2-u1));
+                }
+            }
+        }
+        return matrizExtension;
     }
 
 }
