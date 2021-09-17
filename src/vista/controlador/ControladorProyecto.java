@@ -32,6 +32,7 @@ public class ControladorProyecto implements ActionListener {
         this.objVentanaPrincipal.menuItemInverso.addActionListener(this);
         this.objVentanaPrincipal.menuItemUmbral.addActionListener(this);
         this.objVentanaPrincipal.menuItemZoom.addActionListener(this);
+        this.objVentanaPrincipal.menuItemUmbralBinario.addActionListener(this);
         this.objVentanaPrincipal.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -75,6 +76,10 @@ public class ControladorProyecto implements ActionListener {
             System.out.println("Diste click en zoom");
             zoom();
         }
+        if (e.getActionCommand().equals("Umbral Binario")) {
+            System.out.println("Diste click en Umbral Binario");
+            umbralBinario();
+        }
     }
 
     private void abrirArchivoImagen() {
@@ -98,40 +103,45 @@ public class ControladorProyecto implements ActionListener {
         objVentanaPrincipal.labelImagen.setIcon(new ImageIcon(objImagenOriginal.getBufferImagen()));
         objImagenProcesada = objImagenOriginal.clone();
     }
-    
-    private void convertirEscalaGrises(){
+
+    private void convertirEscalaGrises() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(objImagenProcesada.getMatrizGris()));
         //objVentanaPrincipal.labelImagen.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void girar90(){
+
+    private void girar90() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarNoventa(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void girar180(){
+
+    private void girar180() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarCientoOchenta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void girar270(){
+
+    private void girar270() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarDoscientosSetenta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void inverso(){
+
+    private void inverso() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.inverso(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void umbral(){
+
+    private void umbral() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbral(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1)));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
-    private void zoom(){
+
+    private void zoom() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.interpolacion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
+        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+    }
+
+    private void umbralBinario() {
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralBinario(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 
