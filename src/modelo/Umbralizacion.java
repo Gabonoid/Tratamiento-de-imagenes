@@ -79,6 +79,34 @@ public class Umbralizacion {
         return matrizExtension;
     }
 
-  
+    public static short[][] reduccionGrises(short[][] matrizOriginal) {
+        short[][] matrizExtension = new short[matrizOriginal.length][matrizOriginal[0].length];
+        for (int i = 0; i < matrizOriginal.length; i++) {
+            for (int j = 0; j < matrizOriginal[0].length; j++) {
+                if (matrizOriginal[i][j] < 25) {
+                    matrizExtension[i][j] = 0;
+                } else if (matrizOriginal[i][j] >= 25 && matrizOriginal[i][j] < 50) {
+                    matrizExtension[i][j] = 25;
+                } else if (matrizOriginal[i][j] >= 50 && matrizOriginal[i][j] < 75) {
+                    matrizExtension[i][j] = 50;
+                } else if (matrizOriginal[i][j] >= 75 && matrizOriginal[i][j] < 100) {
+                    matrizExtension[i][j] = 75;
+                } else if (matrizOriginal[i][j] >= 100 && matrizOriginal[i][j] < 125) {
+                    matrizExtension[i][j] = 100;
+                } else if (matrizOriginal[i][j] >= 125 && matrizOriginal[i][j] < 150) {
+                    matrizExtension[i][j] = 125;
+                } else if (matrizOriginal[i][j] >= 150 && matrizOriginal[i][j] < 175) {
+                    matrizExtension[i][j] = 150;
+                } else if (matrizOriginal[i][j] >= 175 && matrizOriginal[i][j] < 200) {
+                    matrizExtension[i][j] = 175;
+                } else if (matrizOriginal[i][j] >= 200 && matrizOriginal[i][j] < 225) {
+                    matrizExtension[i][j] = 200;
+                } else if (matrizOriginal[i][j] >= 225 && matrizOriginal[i][j] <= 250) {
+                    matrizExtension[i][j] = 225;
+                }
+            }
+        }
+        return matrizExtension;
+    }
 
 }
