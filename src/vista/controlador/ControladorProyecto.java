@@ -17,10 +17,11 @@ import javax.swing.ImageIcon;
  */
 public class ControladorProyecto implements ActionListener {
 
-    private Principal objVentanaPrincipal;
-    private Imagen objImagenOriginal;
-    private Imagen objImagenProcesada;
+    public static Principal objVentanaPrincipal;
+    public static Imagen objImagenOriginal;
+    public static Imagen objImagenProcesada;
     private File archivoImagen;
+    private PanelUmbralizacion panelUmbralizacion;
 
     public ControladorProyecto(Principal objVentana) {
         this.objVentanaPrincipal = objVentana;
@@ -35,6 +36,7 @@ public class ControladorProyecto implements ActionListener {
         this.objVentanaPrincipal.menuItemUmbralBinario.addActionListener(this);
         this.objVentanaPrincipal.menuItemUmbralGris.addActionListener(this);
         this.objVentanaPrincipal.menuItemExtension.addActionListener(this);
+        this.objVentanaPrincipal.menuItemReduccionGrises.addActionListener(this);
         this.objVentanaPrincipal.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -70,25 +72,45 @@ public class ControladorProyecto implements ActionListener {
             System.out.println("Diste click en Inverso");
             inverso();
         }
+        if (e.getActionCommand().equals("Interpolacion")) {
+            System.out.println("Diste click en Interpolacion");
+            interpolacion();
+        }
         if (e.getActionCommand().equals("Umbral")) {
             System.out.println("Diste click en Umbral");
+            panelUmbralizacion = new PanelUmbralizacion();
+            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
+            panelUmbralizacion.setSize(135, 150);
+            panelUmbralizacion.setVisible(true);
             umbral();
-        }
-        if (e.getActionCommand().equals("Zoom")) {
-            System.out.println("Diste click en zoom");
-            zoom();
         }
         if (e.getActionCommand().equals("Umbral Binario")) {
             System.out.println("Diste click en Umbral Binario");
+            panelUmbralizacion = new PanelUmbralizacion();
+            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
+            panelUmbralizacion.setSize(135, 150);
+            panelUmbralizacion.setVisible(true);
             umbralBinario();
         }
         if (e.getActionCommand().equals("Umbral Gris")) {
             System.out.println("Diste click en Umbral Gris");
+            panelUmbralizacion = new PanelUmbralizacion();
+            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
+            panelUmbralizacion.setSize(135, 150);
+            panelUmbralizacion.setVisible(true);
             umbralGris();
         }
         if (e.getActionCommand().equals("Extension")) {
             System.out.println("Diste click en Extension");
+            panelUmbralizacion = new PanelUmbralizacion();
+            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
+            panelUmbralizacion.setSize(135, 150);
+            panelUmbralizacion.setVisible(true);
             extension();
+        }
+        if (e.getActionCommand().equals("Reduccion de Grises")) {
+            System.out.println("Diste click en Reduccion de Grises");
+            reduccionGrises();
         }
     }
 
@@ -140,28 +162,45 @@ public class ControladorProyecto implements ActionListener {
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 
-    private void umbral() {
-        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbral(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1)));
-        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
-    }
-
-    private void zoom() {
+    private void interpolacion() {
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.interpolacion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 
+    private void umbral() {
+        PanelUmbralizacion panel = new PanelUmbralizacion();
+        PanelUmbralizacion.llave = 1;
+        panel.getBtnCalcular();
+//        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbral(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1)));
+//        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+    }
+
     private void umbralBinario() {
-        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralBinario(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
-        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        PanelUmbralizacion panel = new PanelUmbralizacion();
+        PanelUmbralizacion.llave = 2;
+        panel.getBtnCalcular();
+//        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralBinario(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
+//        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
+
     private void umbralGris() {
-        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralGris(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
-        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        PanelUmbralizacion panel = new PanelUmbralizacion();
+        PanelUmbralizacion.llave = 3;
+        panel.getBtnCalcular();
+//        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralGris(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
+//        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
-    
+
     private void extension() {
-        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.extension(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
+        PanelUmbralizacion panel = new PanelUmbralizacion();
+        PanelUmbralizacion.llave = 4;
+        panel.getBtnCalcular();
+//        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.extension(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) 1, (short) 1)));
+//        objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+    }
+
+    private void reduccionGrises() {
+        objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.reduccionGrises(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
     }
 

@@ -12,9 +12,8 @@ public class Umbralizacion {
         return matrizInverso;
     }
 
-    public static short[][] umbral(short[][] matrizOriginal, short u) {
+    public static short[][] umbral(short[][] matrizOriginal, int u) {
         short[][] matrizUmbral = new short[matrizOriginal.length][matrizOriginal[0].length];
-        u = 253;
         for (int i = 0; i < matrizOriginal.length; i++) {
             for (int j = 0; j < matrizOriginal[0].length; j++) {
                 if (matrizOriginal[i][j] <= u) {
@@ -29,8 +28,6 @@ public class Umbralizacion {
 
     public static short[][] umbralBinario(short[][] matrizOriginal, short u1, short u2) {
         short[][] matrizUmbralBinario = new short[matrizOriginal.length][matrizOriginal[0].length];
-        u1 = 90;
-        u2 = 180;
         for (int i = 0; i < matrizOriginal.length; i++) {
             for (int j = 0; j < matrizOriginal[0].length; j++) {
                 if (matrizOriginal[i][j] < u1 || matrizOriginal[i][j] > u2) {
@@ -46,8 +43,6 @@ public class Umbralizacion {
 
     public static short[][] umbralGris(short[][] matrizOriginal, short u1, short u2) {
         short[][] matrizUmbralGris = new short[matrizOriginal.length][matrizOriginal[0].length];
-        u1 = 90;
-        u2 = 180;
         for (int i = 0; i < matrizOriginal.length; i++) {
             for (int j = 0; j < matrizOriginal[0].length; j++) {
                 if (matrizOriginal[i][j] < u1 || matrizOriginal[i][j] > u2) {
@@ -63,8 +58,6 @@ public class Umbralizacion {
 
     public static short[][] extension(short[][] matrizOriginal, short u1, short u2) {
         short[][] matrizExtension = new short[matrizOriginal.length][matrizOriginal[0].length];
-        u1 = 90;
-        u2 = 180;
         for (int i = 0; i < matrizOriginal.length; i++) {
             for (int j = 0; j < matrizOriginal[0].length; j++) {
                 if (matrizOriginal[i][j] < u1 || matrizOriginal[i][j] > u2) {

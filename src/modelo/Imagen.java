@@ -92,6 +92,7 @@ public class Imagen implements Cloneable {
         setMatrizGris(nuevaMatrizGris);
     }
 
+    // Profesor
     public BufferedImage convierteMatrizEnBuffered(short[][] matrizModificada) {
         short pixelModificado;
         int pixelSRGB;
