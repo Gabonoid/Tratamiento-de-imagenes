@@ -38,6 +38,9 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         parametrosUmbralizacion = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,6 +64,40 @@ public class Principal extends javax.swing.JFrame {
         menuItemUmbralGris = new javax.swing.JMenuItem();
         menuItemExtension = new javax.swing.JMenuItem();
         menuItemReduccionGrises = new javax.swing.JMenuItem();
+        jMenuOperaciones = new javax.swing.JMenu();
+        menuItemSuma = new javax.swing.JMenuItem();
+        menuItemResta = new javax.swing.JMenuItem();
+        menuItemNOT = new javax.swing.JMenuItem();
+        menuItemOR = new javax.swing.JMenuItem();
+        menuItemAND = new javax.swing.JMenuItem();
+        menuItemXOR = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        menuItemMediaAritmetica = new javax.swing.JMenuItem();
+        menuItemMediaGeometrica = new javax.swing.JMenuItem();
+        menuItemMediaContraArmonica = new javax.swing.JMenuItem();
+        menuItemEstadisticoMediana = new javax.swing.JMenuItem();
+        menuItemEstadisticoMaximo = new javax.swing.JMenuItem();
+        menuItemEstadisticoMinimo = new javax.swing.JMenuItem();
+        menuItemEstadisticoPuntoAPunto = new javax.swing.JMenuItem();
+        menuItemMediaSeccion = new javax.swing.JMenuItem();
+        Convolucion = new javax.swing.JMenu();
+        menuItemConvolucion = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        menuItemEspectro = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        menuItemIdealLowPassFilter = new javax.swing.JMenuItem();
+        menuItemLowPassFilter = new javax.swing.JMenuItem();
+        menuItemIdealHighPassFilter = new javax.swing.JMenuItem();
+        menuItemIdealHighPassFilterOrden = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        menuItemCMY = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        menuItemIntensidad = new javax.swing.JMenuItem();
+        menuItemMatiz = new javax.swing.JMenuItem();
+        menuItemSaturacion = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        menuItemErocion = new javax.swing.JMenuItem();
+        menuItemDilatacion = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -73,6 +110,12 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem5.setText("jMenuItem5");
+
+        jMenuItem6.setText("jMenuItem6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -98,8 +141,8 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -173,6 +216,151 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenuOperaciones.setText("Operaciones");
+
+        menuItemSuma.setText("Suma");
+        menuItemSuma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSumaActionPerformed(evt);
+            }
+        });
+        jMenuOperaciones.add(menuItemSuma);
+
+        menuItemResta.setText("Resta");
+        jMenuOperaciones.add(menuItemResta);
+
+        menuItemNOT.setText("NOT");
+        jMenuOperaciones.add(menuItemNOT);
+
+        menuItemOR.setText("OR");
+        jMenuOperaciones.add(menuItemOR);
+
+        menuItemAND.setText("AND");
+        jMenuOperaciones.add(menuItemAND);
+
+        menuItemXOR.setText("XOR");
+        jMenuOperaciones.add(menuItemXOR);
+
+        jMenuBar1.add(jMenuOperaciones);
+
+        jMenu6.setText("Media");
+
+        menuItemMediaAritmetica.setText("Media Aritmetica");
+        menuItemMediaAritmetica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemMediaAritmeticaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(menuItemMediaAritmetica);
+
+        menuItemMediaGeometrica.setText("Media Geometrica");
+        jMenu6.add(menuItemMediaGeometrica);
+
+        menuItemMediaContraArmonica.setText("Media Contra Armonica");
+        jMenu6.add(menuItemMediaContraArmonica);
+
+        menuItemEstadisticoMediana.setText("Estadistico Mediana");
+        jMenu6.add(menuItemEstadisticoMediana);
+
+        menuItemEstadisticoMaximo.setText("Estadistico Maximo");
+        jMenu6.add(menuItemEstadisticoMaximo);
+
+        menuItemEstadisticoMinimo.setText("Estadistico Minimo");
+        jMenu6.add(menuItemEstadisticoMinimo);
+
+        menuItemEstadisticoPuntoAPunto.setText("Estadistico Punto A Punto");
+        jMenu6.add(menuItemEstadisticoPuntoAPunto);
+
+        menuItemMediaSeccion.setText("Media Seccion");
+        jMenu6.add(menuItemMediaSeccion);
+
+        jMenuBar1.add(jMenu6);
+
+        Convolucion.setText("Convolucion");
+
+        menuItemConvolucion.setText("Convolucion");
+        Convolucion.add(menuItemConvolucion);
+
+        jMenuBar1.add(Convolucion);
+
+        jMenu7.setText("Espectro");
+
+        menuItemEspectro.setText("Espectro");
+        jMenu7.add(menuItemEspectro);
+
+        jMenuBar1.add(jMenu7);
+
+        jMenu8.setText("Frecuencias");
+
+        menuItemIdealLowPassFilter.setText("Ideal Low Pass Filter");
+        menuItemIdealLowPassFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemIdealLowPassFilterActionPerformed(evt);
+            }
+        });
+        jMenu8.add(menuItemIdealLowPassFilter);
+
+        menuItemLowPassFilter.setText("Low Pass Filter");
+        menuItemLowPassFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemLowPassFilterActionPerformed(evt);
+            }
+        });
+        jMenu8.add(menuItemLowPassFilter);
+
+        menuItemIdealHighPassFilter.setText("Ideal High Pass Filter");
+        jMenu8.add(menuItemIdealHighPassFilter);
+
+        menuItemIdealHighPassFilterOrden.setText("Ideal High Pass Filter Orden");
+        jMenu8.add(menuItemIdealHighPassFilterOrden);
+
+        jMenuBar1.add(jMenu8);
+
+        jMenu9.setText("RGB - CMY");
+
+        menuItemCMY.setText("Convertir en CMY");
+        menuItemCMY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCMYActionPerformed(evt);
+            }
+        });
+        jMenu9.add(menuItemCMY);
+
+        jMenuBar1.add(jMenu9);
+
+        jMenu10.setText("HSI");
+
+        menuItemIntensidad.setText("Intensidad");
+        jMenu10.add(menuItemIntensidad);
+
+        menuItemMatiz.setText("Matiz");
+        jMenu10.add(menuItemMatiz);
+
+        menuItemSaturacion.setText("Saturacion");
+        jMenu10.add(menuItemSaturacion);
+
+        jMenuBar1.add(jMenu10);
+
+        jMenu11.setText("Morfologicas");
+
+        menuItemErocion.setText("Erocion");
+        menuItemErocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemErocionActionPerformed(evt);
+            }
+        });
+        jMenu11.add(menuItemErocion);
+
+        menuItemDilatacion.setText("Dilatacion");
+        menuItemDilatacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDilatacionActionPerformed(evt);
+            }
+        });
+        jMenu11.add(menuItemDilatacion);
+
+        jMenuBar1.add(jMenu11);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,7 +370,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,6 +393,34 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemUmbralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUmbralActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemUmbralActionPerformed
+
+    private void menuItemSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSumaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemSumaActionPerformed
+
+    private void menuItemMediaAritmeticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMediaAritmeticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemMediaAritmeticaActionPerformed
+
+    private void menuItemIdealLowPassFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemIdealLowPassFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemIdealLowPassFilterActionPerformed
+
+    private void menuItemLowPassFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemLowPassFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemLowPassFilterActionPerformed
+
+    private void menuItemCMYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCMYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemCMYActionPerformed
+
+    private void menuItemDilatacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDilatacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemDilatacionActionPerformed
+
+    private void menuItemErocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemErocionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemErocionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,16 +458,27 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JMenu Convolucion;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    public javax.swing.JMenu jMenuOperaciones;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -261,14 +488,40 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItem180;
     public javax.swing.JMenuItem menuItem270;
     public javax.swing.JMenuItem menuItem90;
+    public javax.swing.JMenuItem menuItemAND;
     public javax.swing.JMenuItem menuItemAbrir;
+    public javax.swing.JMenuItem menuItemCMY;
+    public javax.swing.JMenuItem menuItemConvolucion;
+    public javax.swing.JMenuItem menuItemDilatacion;
+    public javax.swing.JMenuItem menuItemErocion;
+    public javax.swing.JMenuItem menuItemEspectro;
+    public javax.swing.JMenuItem menuItemEstadisticoMaximo;
+    public javax.swing.JMenuItem menuItemEstadisticoMediana;
+    public javax.swing.JMenuItem menuItemEstadisticoMinimo;
+    public javax.swing.JMenuItem menuItemEstadisticoPuntoAPunto;
     public javax.swing.JMenuItem menuItemExtension;
     public javax.swing.JMenuItem menuItemGrises;
+    public javax.swing.JMenuItem menuItemIdealHighPassFilter;
+    public javax.swing.JMenuItem menuItemIdealHighPassFilterOrden;
+    public javax.swing.JMenuItem menuItemIdealLowPassFilter;
+    public javax.swing.JMenuItem menuItemIntensidad;
     public javax.swing.JMenuItem menuItemInverso;
+    public javax.swing.JMenuItem menuItemLowPassFilter;
+    public javax.swing.JMenuItem menuItemMatiz;
+    public javax.swing.JMenuItem menuItemMediaAritmetica;
+    public javax.swing.JMenuItem menuItemMediaContraArmonica;
+    public javax.swing.JMenuItem menuItemMediaGeometrica;
+    public javax.swing.JMenuItem menuItemMediaSeccion;
+    public javax.swing.JMenuItem menuItemNOT;
+    public javax.swing.JMenuItem menuItemOR;
     public javax.swing.JMenuItem menuItemReduccionGrises;
+    public javax.swing.JMenuItem menuItemResta;
+    public javax.swing.JMenuItem menuItemSaturacion;
+    public javax.swing.JMenuItem menuItemSuma;
     public javax.swing.JMenuItem menuItemUmbral;
     public javax.swing.JMenuItem menuItemUmbralBinario;
     public javax.swing.JMenuItem menuItemUmbralGris;
+    public javax.swing.JMenuItem menuItemXOR;
     public javax.swing.JMenuItem menuItemZoom;
     public javax.swing.JPanel parametrosUmbralizacion;
     // End of variables declaration//GEN-END:variables

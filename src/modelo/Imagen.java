@@ -24,6 +24,9 @@ public class Imagen implements Cloneable {
     private short matrizVerde[][];
     private short matrizAzul[][];
     private short matrizGris[][];
+    private short matrizCian[][];
+    private short matrizMagenta[][];
+    private short matrizAmarillo[][];
     private BufferedImage bufferImagen;
     //factores de conversión a escala de grises
     private final float Alfa = 0.299f;
@@ -71,6 +74,9 @@ public class Imagen implements Cloneable {
         short[][] nuevaMatrizVerde = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
         short[][] nuevaMatrizAzul = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
         short[][] nuevaMatrizGris = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
+        short[][] nuevaMatrizCian = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
+        short[][] nuevaMatrizMagenta = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
+        short[][] nuevaMatrizAmarillo = new short[imagenOriginal.getHeight()][imagenOriginal.getWidth()];
 
         Color colorPixel;
 
@@ -82,16 +88,37 @@ public class Imagen implements Cloneable {
                 nuevaMatrizAzul[filas][columnas] = (short) colorPixel.getBlue();
                 //Aqui va la transformacion a gris
                 nuevaMatrizGris[filas][columnas] = (short) Math.ceil((Alfa * (colorPixel.getRed())) + (Beta * (colorPixel.getGreen())) + (Gama * (colorPixel.getBlue())));
+                //Aqui va la transformacion a CMY
+                nuevaMatrizCian[filas][columnas] = (short) (255 - colorPixel.getRed());
+                nuevaMatrizMagenta[filas][columnas] = (short) (255 - colorPixel.getGreen());
+                nuevaMatrizAmarillo[filas][columnas] = (short) (255 - colorPixel.getBlue());
             }
         }
+
         setFormato("Imagen a color");
         //Inicializan las matrices Rojo, Verde y Azul.
         setMatrizRojo(nuevaMatrizRojo);
         setMatrizVerde(nuevaMatrizVerde);
         setMatrizAzul(nuevaMatrizAzul);
         setMatrizGris(nuevaMatrizGris);
+        setMatrizCian(nuevaMatrizCian);
+        setMatrizMagenta(nuevaMatrizMagenta);
+        setMatrizAmarillo(nuevaMatrizAmarillo);
     }
 
+    public BufferedImage convierteMatrizEnBufferedCMY(short[][] matrizCian, short[][] matrizMagenta, short[][] matrizAmarillo) {
+        short pixelModificado;
+        int pixelSRGB;
+        BufferedImage imagenBuffered = new BufferedImage(matrizCian[0].length, matrizCian.length, 5);
+        for (int filas = 0; filas < matrizCian.length; filas++) {
+            for (int columnas = 0; columnas < matrizCian[0].length; columnas++) {
+                pixelSRGB = matrizCian[filas][columnas] << 16 | matrizMagenta[filas][columnas] << 8 | matrizAmarillo[filas][columnas];
+                imagenBuffered.setRGB(columnas, filas, pixelSRGB);
+            }
+        }
+        return imagenBuffered;
+    }
+    
     // Profesor
     public BufferedImage convierteMatrizEnBuffered(short[][] matrizModificada) {
         short pixelModificado;
@@ -100,6 +127,20 @@ public class Imagen implements Cloneable {
         for (int filas = 0; filas < matrizModificada.length; filas++) {
             for (int columnas = 0; columnas < matrizModificada[0].length; columnas++) {
                 pixelModificado = matrizModificada[filas][columnas];
+                pixelSRGB = pixelModificado << 16 | pixelModificado << 8 | pixelModificado;
+                imagenBuffered.setRGB(columnas, filas, pixelSRGB);
+            }
+        }
+        return imagenBuffered;
+    }
+    
+    public BufferedImage convierteMatrizEnBuffered(double[][] matrizModificada) {
+        short pixelModificado;
+        int pixelSRGB;
+        BufferedImage imagenBuffered = new BufferedImage(matrizModificada[0].length, matrizModificada.length, 5);
+        for (int filas = 0; filas < matrizModificada.length; filas++) {
+            for (int columnas = 0; columnas < matrizModificada[0].length; columnas++) {
+                pixelModificado = (short) matrizModificada[filas][columnas];
                 pixelSRGB = pixelModificado << 16 | pixelModificado << 8 | pixelModificado;
                 imagenBuffered.setRGB(columnas, filas, pixelSRGB);
             }
@@ -209,6 +250,32 @@ public class Imagen implements Cloneable {
         this.bufferImagen = bufferImagen;
     }
 
+    public short[][] getMatrizCian() {
+        return matrizCian;
+    }
+
+    public void setMatrizCian(short[][] matrizCian) {
+        this.matrizCian = matrizCian;
+    }
+
+    public short[][] getMatrizMagenta() {
+        return matrizMagenta;
+    }
+
+    public void setMatrizMagenta(short[][] matrizMagenta) {
+        this.matrizMagenta = matrizMagenta;
+    }
+
+    public short[][] getMatrizAmarillo() {
+        return matrizAmarillo;
+    }
+
+    public void setMatrizAmarillo(short[][] matrizAmarillo) {
+        this.matrizAmarillo = matrizAmarillo;
+    }
+
+    
+    
     @Override
     public Imagen clone() {
         Imagen copia = null;
