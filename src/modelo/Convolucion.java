@@ -1,9 +1,5 @@
 package modelo;
 
-/**
- *
- * @author Gabriel
- */
 public class Convolucion {
 
     public static short[][] convolucion(short[][] matrizOriginal, short mascara[][]) {

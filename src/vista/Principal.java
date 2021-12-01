@@ -62,6 +62,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuImagen = new javax.swing.JMenu();
         menuItemAbrir = new javax.swing.JMenuItem();
+        menuItemRegresar = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuItemGrises = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -110,8 +111,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu11 = new javax.swing.JMenu();
         menuItemErocion = new javax.swing.JMenuItem();
         menuItemDilatacion = new javax.swing.JMenuItem();
-        jMenu12 = new javax.swing.JMenu();
-        menuItemPruebaDos = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -226,7 +225,7 @@ public class Principal extends javax.swing.JFrame {
         parametrosUmbralizacion.setLayout(parametrosUmbralizacionLayout);
         parametrosUmbralizacionLayout.setHorizontalGroup(
             parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 443, Short.MAX_VALUE)
         );
         parametrosUmbralizacionLayout.setVerticalGroup(
             parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,6 +238,14 @@ public class Principal extends javax.swing.JFrame {
 
         menuItemAbrir.setText("Abrir");
         menuImagen.add(menuItemAbrir);
+
+        menuItemRegresar.setText("Regresar a Original");
+        menuItemRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegresarActionPerformed(evt);
+            }
+        });
+        menuImagen.add(menuItemRegresar);
 
         jMenuBar1.add(menuImagen);
 
@@ -424,7 +431,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu11.setText("Morfologicas");
 
-        menuItemErocion.setText("Erocion");
+        menuItemErocion.setText("Erosion");
         menuItemErocion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemErocionActionPerformed(evt);
@@ -442,13 +449,6 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu11);
 
-        jMenu12.setText("Prueba");
-
-        menuItemPruebaDos.setText("Prueba");
-        jMenu12.add(menuItemPruebaDos);
-
-        jMenuBar1.add(jMenu12);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -461,7 +461,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -472,9 +472,11 @@ public class Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addComponent(jPanelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,6 +486,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemInversoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInversoActionPerformed
@@ -521,6 +524,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemErocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemErocionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemErocionActionPerformed
+
+    private void menuItemRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,7 +575,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -627,8 +633,8 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItemMediaSeccion;
     public javax.swing.JMenuItem menuItemNOT;
     public javax.swing.JMenuItem menuItemOR;
-    public javax.swing.JMenuItem menuItemPruebaDos;
     public javax.swing.JMenuItem menuItemReduccionGrises;
+    public javax.swing.JMenuItem menuItemRegresar;
     public javax.swing.JMenuItem menuItemResta;
     public javax.swing.JMenuItem menuItemSaturacion;
     public javax.swing.JMenuItem menuItemSuma;
