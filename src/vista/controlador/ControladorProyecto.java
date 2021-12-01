@@ -24,11 +24,9 @@ public class ControladorProyecto implements ActionListener {
     public static Imagen objImagenProcesada;
     public static Imagen imagenOperacion;
     private File archivoImagen;
-    private PanelQ panelQ;
-    private ConvolucionPanel convolucionPanel;
-    private PanelUmbralizacion panelUmbralizacion;
-    private PanelFilter panelFilter;
-    private PanelFilterDuo panelFilterDuo;
+    private PanelMatriz panelMatriz;
+    private PanelOneField panelOneField;
+    private PanelTwoField panelTwoField;
 
     public ControladorProyecto(Principal objVentana) {
         this.objVentanaPrincipal = objVentana;
@@ -70,6 +68,7 @@ public class ControladorProyecto implements ActionListener {
         this.objVentanaPrincipal.menuItemSaturacion.addActionListener(this);
         this.objVentanaPrincipal.menuItemErocion.addActionListener(this);
         this.objVentanaPrincipal.menuItemDilatacion.addActionListener(this);
+        this.objVentanaPrincipal.menuItemPruebaDos.addActionListener(this);
 
         this.objVentanaPrincipal.addWindowListener(new WindowAdapter() {
             @Override
@@ -112,34 +111,18 @@ public class ControladorProyecto implements ActionListener {
         }
         if (e.getActionCommand().equals("Umbral")) {
             System.out.println("Diste click en Umbral");
-            panelUmbralizacion = new PanelUmbralizacion();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
-            panelUmbralizacion.setSize(135, 150);
-            panelUmbralizacion.setVisible(true);
             umbral();
         }
         if (e.getActionCommand().equals("Umbral Binario")) {
             System.out.println("Diste click en Umbral Binario");
-            panelUmbralizacion = new PanelUmbralizacion();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
-            panelUmbralizacion.setSize(135, 150);
-            panelUmbralizacion.setVisible(true);
             umbralBinario();
         }
         if (e.getActionCommand().equals("Umbral Gris")) {
             System.out.println("Diste click en Umbral Gris");
-            panelUmbralizacion = new PanelUmbralizacion();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
-            panelUmbralizacion.setSize(135, 150);
-            panelUmbralizacion.setVisible(true);
             umbralGris();
         }
         if (e.getActionCommand().equals("Extension")) {
             System.out.println("Diste click en Extension");
-            panelUmbralizacion = new PanelUmbralizacion();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelUmbralizacion);
-            panelUmbralizacion.setSize(135, 150);
-            panelUmbralizacion.setVisible(true);
             extension();
         }
         if (e.getActionCommand().equals("Reduccion de Grises")) {
@@ -248,10 +231,6 @@ public class ControladorProyecto implements ActionListener {
         }
         if (e.getActionCommand().equals("Media Contra Armonica")) {
             System.out.println("Diste click en Media Contra Armonica");
-            panelQ = new PanelQ();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelQ);
-            panelQ.setSize(135, 150);
-            panelQ.setVisible(true);
             mediaContraArmonica();
         }
         if (e.getActionCommand().equals("Estadistico Mediana")) {
@@ -272,10 +251,6 @@ public class ControladorProyecto implements ActionListener {
         }
         if (e.getActionCommand().equals("Media Seccion")) {
             System.out.println("Diste click en Media Seccion");
-            panelQ = new PanelQ();
-            objVentanaPrincipal.parametrosUmbralizacion.add(panelQ);
-            panelQ.setSize(135, 150);
-            panelQ.setVisible(true);
             mediaSeccion();
         }
         if (e.getActionCommand().equals("Convolucion")) {
@@ -336,6 +311,10 @@ public class ControladorProyecto implements ActionListener {
             System.out.println("Diste click en Dilatacion");
             dilatacion();
         }
+        if (e.getActionCommand().equals("Prueba")) {
+            System.out.println("Diste click en Prueba");
+            prueba();
+        }
 
     }
 
@@ -359,64 +338,155 @@ public class ControladorProyecto implements ActionListener {
         objImagenOriginal = new Imagen(archivoImagen);
         objVentanaPrincipal.labelImagen.setIcon(new ImageIcon(objImagenOriginal.getBufferImagen()));
         objImagenProcesada = objImagenOriginal.clone();
+        insertarInformacion();
+    }
+
+    private void insertarInformacion() {
+        objVentanaPrincipal.infoRuta.setText(archivoImagen.getAbsolutePath());
+        objVentanaPrincipal.infoNombre.setText(archivoImagen.getName());
+        objVentanaPrincipal.infoFormato.setText(objImagenOriginal.getFormato());
+        objVentanaPrincipal.infoFilas.setText(objImagenOriginal.getFilas() + "");
+        objVentanaPrincipal.infoColumnas.setText(objImagenOriginal.getColumnas() + "");
+        objVentanaPrincipal.infoFiltro.setText("");
+
     }
 
     private void convertirEscalaGrises() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(objImagenProcesada.getMatrizGris()));
-        //objVentanaPrincipal.labelImagen.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Convertir a Escala de Gris");
     }
 
     private void girar90() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarNoventa(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Girar 90°");
     }
 
     private void girar180() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarCientoOchenta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Girar 180°");
     }
 
     private void girar270() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.girarDoscientosSetenta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Girar 270°");
     }
 
     private void inverso() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.inverso(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Inverso");
     }
 
     private void interpolacion() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(FiltrosBasicos.interpolacion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Interpolación");
     }
 
     private void umbral() {
-        PanelUmbralizacion panel = new PanelUmbralizacion();
-        PanelUmbralizacion.llave = 1;
-        panel.getBtnCalcular();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 80);
+        panelOneField.jLabel1.setText("Parámetro 1: ");
+        panelOneField.jButton1.setText("Calcular");
+
+        panelOneField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelOneField.jButton1.addActionListener((x) -> {
+            int a = Integer.parseInt(panelOneField.jTextField1.getText());
+            objImagenProcesada.setBufferImagen(ControladorProyecto.objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbral(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), a)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+
+        objVentanaPrincipal.infoFiltro.setText("Umbral");
     }
 
     private void umbralBinario() {
-        PanelUmbralizacion panel = new PanelUmbralizacion();
-        PanelUmbralizacion.llave = 2;
-        panel.getBtnCalcular();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelTwoField = new PanelTwoField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelTwoField);
+        panelTwoField.setSize(492, 98);
+        panelTwoField.jLabel1.setText("Parámetro 1: ");
+        panelTwoField.jLabel2.setText("Parámetro 2: ");
+        panelTwoField.jButton1.setText("Calcular");
+
+        panelTwoField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelTwoField.jButton1.addActionListener((x) -> {
+            int a = Integer.parseInt(panelTwoField.jTextField1.getText());
+            int b = Integer.parseInt(panelTwoField.jTextField2.getText());
+            objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralBinario(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) a, (short) b)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+
+        objVentanaPrincipal.infoFiltro.setText("Umbral Binario");
     }
 
     private void umbralGris() {
-        PanelUmbralizacion panel = new PanelUmbralizacion();
-        PanelUmbralizacion.llave = 3;
-        panel.getBtnCalcular();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelTwoField = new PanelTwoField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelTwoField);
+        panelTwoField.setSize(492, 98);
+        panelTwoField.jLabel1.setText("Parámetro 1: ");
+        panelTwoField.jLabel2.setText("Parámetro 2: ");
+        panelTwoField.jButton1.setText("Calcular");
+
+        panelTwoField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelTwoField.jButton1.addActionListener((x) -> {
+            int a = Integer.parseInt(panelTwoField.jTextField1.getText());
+            int b = Integer.parseInt(panelTwoField.jTextField2.getText());
+            objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.umbralGris(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) a, (short) b)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+        objVentanaPrincipal.infoFiltro.setText("Umbral Gris");
     }
 
     private void extension() {
-        PanelUmbralizacion panel = new PanelUmbralizacion();
-        PanelUmbralizacion.llave = 4;
-        panel.getBtnCalcular();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelTwoField = new PanelTwoField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelTwoField);
+        panelTwoField.setSize(492, 98);
+        panelTwoField.jLabel1.setText("Parámetro 1: ");
+        panelTwoField.jLabel2.setText("Parámetro 2: ");
+        panelTwoField.jButton1.setText("Calcular");
+
+        panelTwoField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelTwoField.jButton1.addActionListener((x) -> {
+            int a = Integer.parseInt(panelTwoField.jTextField1.getText());
+            int b = Integer.parseInt(panelTwoField.jTextField2.getText());
+            objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Umbralizacion.extension(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (short) a, (short) b)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+        objVentanaPrincipal.infoFiltro.setText("Extension");
     }
 
     private void reduccionGrises() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.
                 setBufferImagen(objImagenProcesada.
                         convierteMatrizEnBuffered(Umbralizacion.
@@ -426,97 +496,153 @@ public class ControladorProyecto implements ActionListener {
         objVentanaPrincipal.labelImagenMuestra.
                 setIcon(new ImageIcon(objImagenProcesada.
                         getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Reduccion de Grises");
     }
 
     private void suma() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.suma(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), imagenOperacion.convierteBufferedEnMatriz(imagenOperacion.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Suma");
     }
 
     private void resta() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.resta(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), imagenOperacion.convierteBufferedEnMatriz(imagenOperacion.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Resta");
     }
 
     private void not() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.NOT(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("NOT");
     }
 
     private void and() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.AND(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), imagenOperacion.convierteBufferedEnMatriz(imagenOperacion.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("AND");
     }
 
     private void xor() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.XOR(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), imagenOperacion.convierteBufferedEnMatriz(imagenOperacion.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("XOR");
     }
 
     private void or() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Operaciones.OR(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), imagenOperacion.convierteBufferedEnMatriz(imagenOperacion.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("OR");
     }
 
     private void mediaAritmetica() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.mediaAritmetica(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Media Aritmetica");
     }
 
     private void mediaGeometrica() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.mediaGeometrica(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Media Geometrica");
     }
 
     private void mediaContraArmonica() {
-        PanelQ panel = new PanelQ();
-        PanelQ.llave = 1;
-        panel.getjButton1();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 98);
+        panelOneField.jLabel1.setText("Valor Q: ");
+        panelOneField.jButton1.setText("Calcular");
+
+        panelOneField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelOneField.jButton1.addActionListener((x) -> {
+            double q = Double.parseDouble(panelOneField.jTextField1.getText());
+            objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Media.mediaContraArmonica(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), q)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+        objVentanaPrincipal.infoFiltro.setText("Media Contra Armonica");
     }
 
     private void estadisticoMediana() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.EstadisticoMediana(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Estadistico Mediana");
     }
 
     private void estadisticoMaximo() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.EstadisticoMaximo(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Estadistico Máximo");
     }
 
     private void estadisticoMinimo() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.EstadisticoMinimo(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Estadistico Mínimo");
     }
 
     private void estadisticoPuntoAPunto() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenOriginal.convierteMatrizEnBuffered(Media.EstadisticoPuntoAPunto(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Estadistico Punto a Punto");
     }
 
     private void mediaSeccion() {
-        PanelQ panel = new PanelQ();
-        PanelQ.llave = 2;
-        panel.getjButton1();
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 98);
+        panelOneField.jLabel1.setText("Valor Q: ");
+        panelOneField.jButton1.setText("Calcular");
+
+        panelOneField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelOneField.jButton1.addActionListener((x) -> {
+            double q = Double.parseDouble(panelOneField.jTextField1.getText());
+            objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Media.MediaSeccion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()), (int) q)));
+            objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+
+        });
+        objVentanaPrincipal.infoFiltro.setText("Media Sección");
     }
 
     private void convolucion() {
-        convolucionPanel = new ConvolucionPanel();
-        convolucionPanel.setSize(265, 209);
-        objVentanaPrincipal.parametrosUmbralizacion.add(convolucionPanel);
-        convolucionPanel.jButton1.addActionListener((x) -> {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        panelMatriz = new PanelMatriz();
+        panelMatriz.setSize(265, 209);
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelMatriz);
+        panelMatriz.jButton1.addActionListener((x) -> {
 
-            double a = (double) Double.parseDouble(convolucionPanel.jTextField00.getText());
-            double b = (double) Double.parseDouble(convolucionPanel.jTextField01.getText());
-            double c = (double) Double.parseDouble(convolucionPanel.jTextField02.getText());
+            double a = (double) Double.parseDouble(panelMatriz.jTextField00.getText());
+            double b = (double) Double.parseDouble(panelMatriz.jTextField01.getText());
+            double c = (double) Double.parseDouble(panelMatriz.jTextField02.getText());
 
-            double d = (double) Double.parseDouble(convolucionPanel.jTextField03.getText());
-            double e = (double) Double.parseDouble(convolucionPanel.jTextField04.getText());
-            double f = (double) Double.parseDouble(convolucionPanel.jTextField05.getText());
+            double d = (double) Double.parseDouble(panelMatriz.jTextField03.getText());
+            double e = (double) Double.parseDouble(panelMatriz.jTextField04.getText());
+            double f = (double) Double.parseDouble(panelMatriz.jTextField05.getText());
 
-            double g = (double) Double.parseDouble(convolucionPanel.jTextField06.getText());
-            double h = (double) Double.parseDouble(convolucionPanel.jTextField07.getText());
-            double i = (double) Double.parseDouble(convolucionPanel.jTextField08.getText());
+            double g = (double) Double.parseDouble(panelMatriz.jTextField06.getText());
+            double h = (double) Double.parseDouble(panelMatriz.jTextField07.getText());
+            double i = (double) Double.parseDouble(panelMatriz.jTextField08.getText());
 
             short[][] guardar = new short[3][3];
 
@@ -534,24 +660,32 @@ public class ControladorProyecto implements ActionListener {
             objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
 
         });
+        objVentanaPrincipal.infoFiltro.setText("Convolución");
     }
 
     private void dominioFrecuencia() throws FFTException {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         ImageFFT imagenFFT = new ImageFFT(objImagenProcesada.getBufferImagen());
         imagenFFT.transform();
         BufferedImage dominio = imagenFFT.getSpectrum();
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(dominio));
+        objVentanaPrincipal.infoFiltro.setText("Domimio de Frecuencia");
     }
 
     private void idealLowPassFilter() throws FFTException {
 
-        panelFilter = new PanelFilter();
-        objVentanaPrincipal.parametrosUmbralizacion.add(panelFilter);
-        panelFilter.setSize(102, 74);
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 98);
+        panelOneField.jLabel1.setText("Grados: ");
+        panelOneField.jButton1.setText("Calcular");
 
-        panelFilter.setVisible(true);
+        panelOneField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
 
-        panelFilter.btnCalcular.addActionListener((x) -> {
+        panelOneField.jButton1.addActionListener((x) -> {
 
             ImageFFT ftt = null;
             try {
@@ -569,7 +703,7 @@ public class ControladorProyecto implements ActionListener {
                 System.out.println("El espectro ya existe");
             }
 
-            double grados = (double) Double.parseDouble(panelFilter.textFieldGrados.getText());
+            double grados = (double) Double.parseDouble(panelOneField.jTextField1.getText());
 
             if (grados >= 0 && grados <= 360) {
 
@@ -592,18 +726,25 @@ public class ControladorProyecto implements ActionListener {
             }
 
         });
+        objVentanaPrincipal.infoFiltro.setText("Ideal Low Pass Filter");
 
     }
 
     private void butterworthLowPassFilter() {
 
-        panelFilterDuo = new PanelFilterDuo();
-        objVentanaPrincipal.parametrosUmbralizacion.add(panelFilterDuo);
-        panelFilterDuo.setSize(102, 104);
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelTwoField = new PanelTwoField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelTwoField);
+        panelTwoField.setSize(492, 98);
+        panelTwoField.jLabel1.setText("Grados: ");
+        panelTwoField.jLabel2.setText("Orden: ");
+        panelTwoField.jButton1.setText("Calcular");
 
-        panelFilterDuo.setVisible(true);
+        panelTwoField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
 
-        panelFilterDuo.btnCalcular.addActionListener((x) -> {
+        panelTwoField.jButton1.addActionListener((x) -> {
 
             ImageFFT ftt = null;
             try {
@@ -621,8 +762,8 @@ public class ControladorProyecto implements ActionListener {
                 System.out.println("El espectro ya existe");
             }
 
-            double grados = Double.parseDouble(panelFilterDuo.jTextFieldGrados.getText());
-            int orden = Integer.parseInt(panelFilterDuo.jTextFieldOrden.getText());
+            double grados = Double.parseDouble(panelTwoField.jTextField1.getText());
+            int orden = Integer.parseInt(panelTwoField.jTextField2.getText());
 
             if (grados >= 0 && grados <= 360) {
 
@@ -645,18 +786,23 @@ public class ControladorProyecto implements ActionListener {
             }
 
         });
+        objVentanaPrincipal.infoFiltro.setText("Butterworth Low Pass Filter");
 
     }
 
     private void idealHighPassFilter() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 98);
+        panelOneField.jLabel1.setText("Grados: ");
+        panelOneField.jButton1.setText("Calcular");
 
-        panelFilter = new PanelFilter();
-        objVentanaPrincipal.parametrosUmbralizacion.add(panelFilter);
-        panelFilter.setSize(102, 74);
+        panelOneField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
 
-        panelFilter.setVisible(true);
-
-        panelFilter.btnCalcular.addActionListener((x) -> {
+        panelOneField.jButton1.addActionListener((x) -> {
 
             ImageFFT ftt = null;
             try {
@@ -674,7 +820,7 @@ public class ControladorProyecto implements ActionListener {
                 System.out.println("El espectro ya existe");
             }
 
-            double grados = (double) Double.parseDouble(panelFilter.textFieldGrados.getText());
+            double grados = (double) Double.parseDouble(panelOneField.jTextField1.getText());
 
             if (grados >= 0 && grados <= 360) {
 
@@ -697,18 +843,24 @@ public class ControladorProyecto implements ActionListener {
             }
 
         });
+        objVentanaPrincipal.infoFiltro.setText("Ideal High Pass Filter");
 
     }
 
     private void idealHighPassFilterOrden() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+        panelTwoField = new PanelTwoField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelTwoField);
+        panelTwoField.setSize(492, 98);
+        panelTwoField.jLabel1.setText("Grados: ");
+        panelTwoField.jLabel2.setText("Orden: ");
+        panelTwoField.jButton1.setText("Calcular");
 
-        panelFilterDuo = new PanelFilterDuo();
-        objVentanaPrincipal.parametrosUmbralizacion.add(panelFilterDuo);
-        panelFilterDuo.setSize(102, 104);
+        panelTwoField.setVisible(true);
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
 
-        panelFilterDuo.setVisible(true);
-
-        panelFilterDuo.btnCalcular.addActionListener((x) -> {
+        panelTwoField.jButton1.addActionListener((x) -> {
 
             ImageFFT ftt = null;
             try {
@@ -726,8 +878,8 @@ public class ControladorProyecto implements ActionListener {
                 System.out.println("El espectro ya existe");
             }
 
-            double grados = Double.parseDouble(panelFilterDuo.jTextFieldGrados.getText());
-            int orden = Integer.parseInt(panelFilterDuo.jTextFieldOrden.getText());
+            double grados = Double.parseDouble(panelTwoField.jTextField1.getText());
+            int orden = Integer.parseInt(panelTwoField.jTextField2.getText());
 
             if (grados >= 0 && grados <= 360) {
 
@@ -750,30 +902,40 @@ public class ControladorProyecto implements ActionListener {
             }
 
         });
+        objVentanaPrincipal.infoFiltro.setText("Ideal High Pass Filter Orden");
 
     }
 
     private void convertirCMY() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBufferedCMY(objImagenProcesada.getMatrizCian(), objImagenProcesada.getMatrizMagenta(), objImagenProcesada.getMatrizAmarillo()));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Converir a CMY");
     }
 
     private void Intensidad() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(HSI.Intensidad(objImagenProcesada.getMatrizRojo(), objImagenProcesada.getMatrizVerde(), objImagenProcesada.getMatrizAzul())));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Intensidad");
     }
 
     private void Matiz() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(HSI.Matiz(objImagenProcesada.getMatrizRojo(), objImagenProcesada.getMatrizVerde(), objImagenProcesada.getMatrizAzul())));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Matíz");
     }
 
     private void Saturacion() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(HSI.Saturacion(objImagenProcesada.getMatrizRojo(), objImagenProcesada.getMatrizVerde(), objImagenProcesada.getMatrizAzul())));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Saturación");
     }
 
     private void erocion() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         short mascara[][] = new short[3][3];
         for (int i = 0; i < mascara.length; i++) {
             for (int j = 0; j < mascara.length; j++) {
@@ -782,9 +944,11 @@ public class ControladorProyecto implements ActionListener {
         }
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Morfologicas.erocion((objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen())), mascara)));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Erosión");
     }
 
     private void dilatacion() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
         short mascara[][] = new short[3][3];
         for (int i = 0; i < mascara.length; i++) {
             for (int j = 0; j < mascara.length; j++) {
@@ -793,6 +957,24 @@ public class ControladorProyecto implements ActionListener {
         }
         objImagenProcesada.setBufferImagen(objImagenProcesada.convierteMatrizEnBuffered(Morfologicas.dilatacion(objImagenProcesada.convierteBufferedEnMatriz(objImagenProcesada.getBufferImagen()))));
         objVentanaPrincipal.labelImagenMuestra.setIcon(new ImageIcon(objImagenProcesada.getBufferImagen()));
+        objVentanaPrincipal.infoFiltro.setText("Dilatación");
+    }
+
+    private void prueba() {
+        objVentanaPrincipal.parametrosUmbralizacion.removeAll();
+        panelOneField = new PanelOneField();
+        objVentanaPrincipal.parametrosUmbralizacion.add(panelOneField);
+        panelOneField.setSize(492, 80);
+
+        panelOneField.setVisible(true);
+        panelOneField.jLabel1.setText("Esto es una Prueba");
+        panelOneField.jButton1.setText("btn Prueba");
+        objVentanaPrincipal.parametrosUmbralizacion.updateUI();
+
+        panelOneField.jButton1.addActionListener((x) -> {
+            System.out.println("Acabas de apretaar el Botón");
+        });
+        objVentanaPrincipal.infoFiltro.setText("Prueba");
     }
 
 }

@@ -41,10 +41,22 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        parametrosUmbralizacion = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelInformacion = new javax.swing.JPanel();
+        labelRuta = new javax.swing.JLabel();
+        labelFormato = new javax.swing.JLabel();
+        labelfilas = new javax.swing.JLabel();
+        labelColumnas = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelFiltro = new javax.swing.JLabel();
+        infoNombre = new javax.swing.JLabel();
+        infoRuta = new javax.swing.JLabel();
+        infoFilas = new javax.swing.JLabel();
+        infoFormato = new javax.swing.JLabel();
+        infoColumnas = new javax.swing.JLabel();
+        infoFiltro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labelImagen = new javax.swing.JLabel();
+        parametrosUmbralizacion = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         labelImagenMuestra = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -98,6 +110,8 @@ public class Principal extends javax.swing.JFrame {
         jMenu11 = new javax.swing.JMenu();
         menuItemErocion = new javax.swing.JMenuItem();
         menuItemDilatacion = new javax.swing.JMenuItem();
+        jMenu12 = new javax.swing.JMenu();
+        menuItemPruebaDos = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -120,39 +134,106 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        javax.swing.GroupLayout parametrosUmbralizacionLayout = new javax.swing.GroupLayout(parametrosUmbralizacion);
-        parametrosUmbralizacion.setLayout(parametrosUmbralizacionLayout);
-        parametrosUmbralizacionLayout.setHorizontalGroup(
-            parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+        labelRuta.setText("Ruta:");
+
+        labelFormato.setText("Formato:");
+
+        labelfilas.setText("Filas:");
+
+        labelColumnas.setText("Columnas:");
+
+        labelNombre.setText("Nombre:");
+
+        labelFiltro.setText("Filtro:");
+
+        infoNombre.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        infoRuta.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        infoFilas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        infoFormato.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        infoColumnas.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        infoFiltro.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanelInformacionLayout = new javax.swing.GroupLayout(jPanelInformacion);
+        jPanelInformacion.setLayout(jPanelInformacionLayout);
+        jPanelInformacionLayout.setHorizontalGroup(
+            jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelFormato)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelRuta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelfilas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoFilas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelColumnas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoColumnas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInformacionLayout.createSequentialGroup()
+                        .addComponent(labelFiltro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(infoFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        parametrosUmbralizacionLayout.setVerticalGroup(
-            parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+        jPanelInformacionLayout.setVerticalGroup(
+            jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformacionLayout.createSequentialGroup()
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelRuta)
+                    .addComponent(infoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelFormato)
+                    .addComponent(infoFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelfilas)
+                    .addComponent(infoFilas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelColumnas)
+                    .addComponent(infoColumnas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelFiltro)
+                    .addComponent(infoFiltro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(labelImagen);
 
-        jScrollPane2.setViewportView(labelImagenMuestra);
+        javax.swing.GroupLayout parametrosUmbralizacionLayout = new javax.swing.GroupLayout(parametrosUmbralizacion);
+        parametrosUmbralizacion.setLayout(parametrosUmbralizacionLayout);
+        parametrosUmbralizacionLayout.setHorizontalGroup(
+            parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        parametrosUmbralizacionLayout.setVerticalGroup(
+            parametrosUmbralizacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jScrollPane2.setViewportView(labelImagenMuestra);
 
         menuImagen.setText("Imagen");
 
@@ -361,6 +442,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu11);
 
+        jMenu12.setText("Prueba");
+
+        menuItemPruebaDos.setText("Prueba");
+        jMenu12.add(menuItemPruebaDos);
+
+        jMenuBar1.add(jMenu12);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,17 +457,29 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(parametrosUmbralizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -459,9 +559,16 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenu Convolucion;
+    public javax.swing.JLabel infoColumnas;
+    public javax.swing.JLabel infoFilas;
+    public javax.swing.JLabel infoFiltro;
+    public javax.swing.JLabel infoFormato;
+    public javax.swing.JLabel infoNombre;
+    public javax.swing.JLabel infoRuta;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -479,11 +586,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     public javax.swing.JMenu jMenuOperaciones;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanelInformacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelColumnas;
+    private javax.swing.JLabel labelFiltro;
+    private javax.swing.JLabel labelFormato;
     public javax.swing.JLabel labelImagen;
     public javax.swing.JLabel labelImagenMuestra;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelRuta;
+    private javax.swing.JLabel labelfilas;
     public javax.swing.JMenu menuImagen;
     public javax.swing.JMenuItem menuItem180;
     public javax.swing.JMenuItem menuItem270;
@@ -514,6 +627,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JMenuItem menuItemMediaSeccion;
     public javax.swing.JMenuItem menuItemNOT;
     public javax.swing.JMenuItem menuItemOR;
+    public javax.swing.JMenuItem menuItemPruebaDos;
     public javax.swing.JMenuItem menuItemReduccionGrises;
     public javax.swing.JMenuItem menuItemResta;
     public javax.swing.JMenuItem menuItemSaturacion;
